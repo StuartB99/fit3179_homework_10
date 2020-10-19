@@ -1,0 +1,52 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "width": 1200,
+  "height": 700,
+  "title": "Volcanoes Around the World",
+  "autosize":"fit",
+  "layer": [
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/StuartB99/fit3179_homework_10/main/ne_110m.json",
+        "format": {
+          "type": "topojson",
+          "feature": "ne_110m_admin_0_countries"
+        }
+      },
+      "projection": {
+        "type": "equalEarth"     
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "lightgray",
+        "stroke": "white"
+      }
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/StuartB99/fit3179_homework_10/main/volcano.csv"
+      },
+      "projection": {
+        "type": "equalEarth"
+      },
+      "mark":{"type": "point", "shape": "triangle-up"},
+      "encoding": {
+        "longitude": {
+          "field": "longitude",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "latitude",
+          "type": "quantitative"
+        },
+        "tooltip":[
+        {"field":"volcano_name", "title":"Volcano name"},
+        {"field":"country", "title":"Country"},
+        {"field":"region", "title":"Region"},
+        {"field":"subregion", "title":"Subregion"},
+        {"field":"primary_volcano_type", "title":"Volcano type"}
+    ]
+      }
+    }
+  ]
+}
